@@ -18,20 +18,8 @@ def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     item_student = types.KeyboardButton("Студент")
     item_teacher = types.KeyboardButton("Преподаватель")
-
     markup.add(item_student, item_teacher)
-
     bot.send_message(message.chat.id, "Доброго времени суток! Вы студент или преподаватель?", reply_markup=markup)
-
-@bot.message_handler(commands=['who'])
-def handle_start(message):
-    user = message.from_user
-    bot.send_message(message.chat.id, f"Привет, {user.first_name}! Я определю кто ты.")
-    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button = telebot.types.KeyboardButton("Кто по масти?")
-    markup.add(button)
-    bot.send_message(message.chat.id, "Выбери действие:", reply_markup=markup)
-
 
 @bot.message_handler(func=lambda message: message.text == "Студент")
 def student_menu(message):
